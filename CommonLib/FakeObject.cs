@@ -18,6 +18,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Web.Security;
+using System.Configuration;
 
 namespace CommonLib
 {
@@ -33,6 +34,7 @@ namespace CommonLib
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            ConfigurationManager.AppSettings.Set("microsoft:WorkflowComponentModel:DisableActivitySurrogateSelectorTypeCheck", "true");
             BinaryFormatter fmt = new BinaryFormatter();
             MemoryStream stm = new MemoryStream();
             fmt.SurrogateSelector = new ObjectSurrogateSelector();
